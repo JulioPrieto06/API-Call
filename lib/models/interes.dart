@@ -1,15 +1,17 @@
 // To parse this JSON data, do
 //
-//     final interes = interesFromJson(jsonString);
+//     final post = postFromJson(jsonString);
 
 import 'dart:convert';
 
-Interes interesFromJson(String str) => Interes.fromJson(json.decode(str));
+List<Post> postFromJson(String str) =>
+    List<Post>.from(json.decode(str).map((x) => Post.fromJson(x)));
 
-String interesToJson(Interes data) => json.encode(data.toJson());
+String postToJson(List<Post> data) =>
+    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Interes {
-  Interes({
+class Post {
+  Post({
     required this.success,
     required this.message,
     required this.data,
@@ -19,7 +21,7 @@ class Interes {
   String message;
   List<Datum> data;
 
-  factory Interes.fromJson(Map<String, dynamic> json) => Interes(
+  factory Post.fromJson(Map<String, dynamic> json) => Post(
         success: json["success"],
         message: json["message"],
         data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
@@ -36,42 +38,38 @@ class Datum {
   Datum({
     required this.id,
     required this.titulo,
+    required this.fecha,
     required this.contenido,
+    required this.visible,
+    required this.extracto,
     required this.img,
-    required this.fechaInicio,
-    required this.fechaFin,
-    required this.idCat,
-    required this.orden,
   });
 
   String id;
   String titulo;
+  DateTime fecha;
   String contenido;
+  String visible;
+  String extracto;
   String img;
-  DateTime fechaInicio;
-  DateTime fechaFin;
-  String idCat;
-  String orden;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["ID"],
         titulo: json["TITULO"],
+        fecha: DateTime.parse(json["FECHA"]),
         contenido: json["CONTENIDO"],
+        visible: json["VISIBLE"],
+        extracto: json["EXTRACTO"],
         img: json["IMG"],
-        fechaInicio: DateTime.parse(json["FECHA_INICIO"]),
-        fechaFin: DateTime.parse(json["FECHA_FIN"]),
-        idCat: json["ID_CAT"],
-        orden: json["ORDEN"],
       );
 
   Map<String, dynamic> toJson() => {
         "ID": id,
         "TITULO": titulo,
+        "FECHA": fecha.toIso8601String(),
         "CONTENIDO": contenido,
+        "VISIBLE": visible,
+        "EXTRACTO": extracto,
         "IMG": img,
-        "FECHA_INICIO": fechaInicio.toIso8601String(),
-        "FECHA_FIN": fechaFin.toIso8601String(),
-        "ID_CAT": idCat,
-        "ORDEN": orden,
       };
 }
