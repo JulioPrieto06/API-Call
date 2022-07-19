@@ -74,4 +74,5 @@ class Datum {
         "ID_CAT": idCat,
         "ORDEN": orden,
       };
+  String get fullUrl => 'https://portalempleado.um.edu.mx' + img;
 }

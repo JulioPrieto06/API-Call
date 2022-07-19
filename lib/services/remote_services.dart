@@ -9,7 +9,7 @@ class RemoteService {
     var response = await client.get(uri);
     if (response.statusCode == 200) {
       var json = response.body;
-      return Datum.map<Datum>(Datum.fromJson).toList();
+      return interesFromJson(json).data;
     }
   }
 }

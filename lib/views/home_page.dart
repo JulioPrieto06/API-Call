@@ -18,11 +18,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
+    getData();
     super.initState();
   }
 
   getData() async {
-    interes = (await RemoteService().getPost()) as List<Datum>?;
+    interes = (await RemoteService().getPost());
     if (interes != null) {
       setState(() {
         isLoaded = true;
@@ -42,7 +43,16 @@ class _HomePageState extends State<HomePage> {
           itemCount: interes?.length,
           itemBuilder: (context, index) {
             return Container(
-              child: Text(interes![index].titulo),
+              child: Column(
+                children: [
+                  Text(
+                    interes![index].titulo,
+                    style:
+                        TextStyle(fontSize: 25, backgroundColor: Colors.green),
+                  ),
+                  Image.network(interes![index].fullUrl),
+                ],
+              ),
             );
           },
         ),
