@@ -1,4 +1,4 @@
-import 'package:api_rest_tuto/views/home_page.dart';
+import 'package:api_rest_tuto/interes/views/interes_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

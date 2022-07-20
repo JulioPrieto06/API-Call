@@ -1,8 +1,12 @@
 import 'dart:ffi';
 
-import 'package:api_rest_tuto/models/interes.dart';
-import 'package:api_rest_tuto/services/remote_services.dart';
+import 'package:api_rest_tuto/comunicados/views/comunicados_page.dart';
+import 'package:api_rest_tuto/interes/models/interes.dart';
+import 'package:api_rest_tuto/interes/services/remote_services.dart';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+
 import 'package:http/http.dart';
 
 class HomePage extends StatefulWidget {
@@ -36,6 +40,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Interes'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.arrow_forward_ios),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Comunicados(),
+                  ));
+            },
+          )
+        ],
       ),
       body: Visibility(
         visible: isLoaded,
@@ -47,10 +63,17 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     interes![index].titulo,
-                    style:
-                        TextStyle(fontSize: 25, backgroundColor: Colors.green),
+                    style: const TextStyle(
+                        fontSize: 25, backgroundColor: Colors.green),
                   ),
                   Image.network(interes![index].fullUrl),
+                  Text(interes![index]
+                          .fechaInicio
+                          .toString() //+ (interes![index].fechaFin.toString()),
+                      ),
+                  Text(
+                    interes![index].fechaFin.toString(),
+                  ),
                 ],
               ),
             );
