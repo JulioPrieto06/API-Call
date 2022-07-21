@@ -64,13 +64,10 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     interes![index].titulo,
                     style: const TextStyle(
-                        fontSize: 25, backgroundColor: Colors.green),
+                        fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                   Image.network(interes![index].fullUrl),
-                  Text(interes![index]
-                          .fechaInicio
-                          .toString() //+ (interes![index].fechaFin.toString()),
-                      ),
+                  Text(interes![index].fechaInicio.toString()),
                   Text(
                     interes![index].fechaFin.toString(),
                   ),

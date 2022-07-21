@@ -72,7 +72,4 @@ class Datum {
         "IMG": img,
       };
   String get fullUrl => 'https://portalempleado.um.edu.mx' + img;
-  String get fullUrl1 => 'https://portalempleado.um.edu.mx' + img;
-  String get fullUrl2 => 'https://portalempleado.um.edu.mx' + img;
-  String get fullUrl3 => 'https://portalempleado.um.edu.mx' + img;
 }

@@ -56,20 +56,25 @@ class _ComunicadosState extends State<Comunicados> {
         child: ListView.builder(
           itemCount: comunicados?.length,
           itemBuilder: (context, index) {
-            return Container(
+            return Card(
               child: Column(
-                children: [
-                  Text(
-                    comunicados![index].titulo,
-                    style: const TextStyle(
-                        fontSize: 15, backgroundColor: Colors.green),
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Container(
+                    child: Image.network(comunicados![index].fullUrl),
                   ),
-                  Image.network(comunicados![index].fullUrl),
-                  SingleChildScrollView(
-                    child: Html(
-                      data: comunicados![index].contenido,
+                  ListTile(
+                    //leading: Image.network(comunicados![index].fullUrl),
+                    title: Text(
+                      comunicados![index].titulo,
+                      style: const TextStyle(
+                          fontSize: 16, fontWeight: FontWeight.bold),
                     ),
-                  )
+                    subtitle: SingleChildScrollView(
+                        child: Html(
+                      data: (comunicados?[index].contenido),
+                    )),
+                  ),
                 ],
               ),
             );
